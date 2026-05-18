@@ -1,0 +1,64 @@
+name: Publish PDF to GitHub Pages
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Fonts
+        run: |
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+
+      - uses: typst-community/setup-typst@v4
+
+      - name: Create output directory
+        run: mkdir -p github-pages-temp
+
+      - name: Build PDF
+        run: typst compile main.typ github-pages-temp/人类有史以来最伟大的书.pdf
+
+      - name: Generate index.html with redirect
+        run: |
+          cat > github-pages-temp/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="UTF-8">
+              <title>下载...</title>
+              <meta http-equiv="refresh" content="0; url=人类有史以来最伟大的书.pdf">
+          </head>
+          <body>
+              <p>如果没有自动下载, <a href="人类有史以来最伟大的书.pdf">点击此处</a>.</p>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: github-pages-temp
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
