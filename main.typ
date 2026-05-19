@@ -1,4 +1,4 @@
-#set heading(numbering: "1. ")
+#set heading(numbering: "1  ")
 #set par(first-line-indent: 2em)
 #set text(
   font: "Noto Serif CJK SC",
@@ -78,7 +78,7 @@
 
 = 止战之殇
 
-#author("佚名")
+#author("佚　名")
 
 雷德王还有3个小时降临地球，世界各大媒体平台将这条消息传得沸沸扬扬，他的到来，是救赎还是毁灭，我无从得知，众说纷纭，我只想先吃个汉堡吧。
 
