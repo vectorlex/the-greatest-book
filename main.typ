@@ -28,6 +28,17 @@
 }
 
 // 目录页
+#align(center)[
+  #text(size: 24pt)[*人类有史以来最伟大的书*]
+  \
+  \
+  #text(font: "LXGW WenKai")[
+    Threadz\_\<threadzunderline\@outlook.com\>
+    \
+    V#datetime.today().display("[year][month][day]")
+  ]
+]
+\
 #outline(title: "目录")
 #pagebreak()
 
