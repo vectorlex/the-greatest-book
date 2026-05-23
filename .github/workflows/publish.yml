@@ -20,8 +20,12 @@ jobs:
 
       - name: Install Fonts
         run: |
-          sudo apt-get install -y fonts-noto-cjk fonts-lxgw-wenkai
-          fc-cache -f
+          wget -q https://github.com/TrionesType/zhuque/releases/download/v0.212/ZhuqueFangsong-v0.212.zip
+          unzip -q ZhuqueFangsong-v0.212.zip -d zhuque
+          sudo mkdir -p /usr/share/fonts/truetype/zhuque
+          sudo cp zhuque/*.ttf /usr/share/fonts/truetype/zhuque/
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -fv
 
       - uses: typst-community/setup-typst@v4
 

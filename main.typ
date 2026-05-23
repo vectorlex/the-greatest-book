@@ -14,7 +14,7 @@
 
 #let author(author, deceased: false) = {
   align(center, {
-    let content = text(font: "LXGW WenKai", size: 11pt)[#author]
+    let content = text(font: "Zhuque Fangsong (technical preview)", size: 11pt)[#author]
     if deceased {
       content = box(
         stroke: 1pt + black,
@@ -32,11 +32,7 @@
   #text(size: 24pt)[*人类有史以来最伟大的书*]
   \
   \
-  #text(font: "LXGW WenKai")[
-    Threadz\_\<threadzunderline\@outlook.com\>
-    \
-    V#datetime.today().display("[year][month][day]")
-  ]
+  V#datetime.today().display("[year][month][day]")
 ]
 \
 #outline(title: "目录")
