@@ -32,7 +32,7 @@
   #text(size: 24pt)[*人类有史以来最伟大的书*]
   \
   \
-  V#datetime.today().display("[year][month][day]")
+  #datetime.today().display("[year][month][day]")
 ]
 \
 #outline(title: "目录")
